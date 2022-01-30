@@ -12,3 +12,6 @@ export-todos: ## Export all todos from the database to "./export/todos.json"
 
 list-todos: ## Display remaining todos on a table
 		${PY} scripts/todos_list.py
+
+pie-todos: ## Display a pie chart that shows todos status
+		${PY} scripts/todos_piechart.py
