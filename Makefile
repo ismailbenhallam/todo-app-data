@@ -10,3 +10,5 @@ new-todo: ## Ask the user for a todo details, and save it to the database
 export-todos: ## Export all todos from the database to "./export/todos.json"
 		${PY} scripts/export.py
 
+list-todos: ## Display remaining todos on a table
+		${PY} scripts/todos_list.py
