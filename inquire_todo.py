@@ -1,7 +1,5 @@
 """Inquire 'Todo' from console"""
 
-from email.policy import default
-
 from inquirer import List, Text, errors, prompt
 from inquirer.themes import GreenPassion
 from termcolor import colored
@@ -16,12 +14,13 @@ def __validate_title(answers, title):
 
 
 def get_todo_answers():
+    print(colored("\n>>> Please enter the task details\n", "cyan"))
     questions = [
-        Text("title", message=colored("Please enter todo title", "green"), validate=__validate_title),
-        Text("description", message=colored("Please enter todo description", "green")),
+        Text("title", message="Please enter todo title", validate=__validate_title),
+        Text("description", message="Please enter todo description"),
         List(
             "priority",
-            message=colored("Please enter priority", "green"),
+            message="Please enter priority",
             choices=[["NORMAL", 1], ["HIGH", 0], ["LOW", 2]],
             default=1,
         ),

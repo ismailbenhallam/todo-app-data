@@ -2,7 +2,9 @@
 
 import os
 
+import emoji
 import pandas as pd
+from termcolor import colored
 
 from todo_connection import get_connection
 
@@ -25,7 +27,19 @@ def main():
 
     # Export the todos to a JSON format
     dataframe.to_json(f"{FOLDER}/{TABLE_NAME}.json", "records", indent=2, date_format="iso")
-    print(f"'todos' table entries exported to {FOLDER}/{TABLE_NAME}.json")
+
+    JSON_FILE_PATH = os.path.abspath(f"{FOLDER}/{TABLE_NAME}.json")
+
+    print(
+        colored(
+            "\nYours tasks have been exported to "
+            + colored(JSON_FILE_PATH, attrs=["bold", "underline"])
+            + " successfully ",
+            "magenta",
+        )
+        + emoji.emojize(":grinning_face_with_big_eyes:")
+        + "\n"
+    )
 
     # Close the connection
     engine.dispose()
