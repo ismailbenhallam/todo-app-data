@@ -3,5 +3,6 @@
 .envrc
 .venv/
 .python-version
+**/__pycache__
 
 export/

@@ -1,4 +1,4 @@
-"""Script to export todos table to JSON"""
+"""Script to export all todos from the database to JSON"""
 
 import os
 
@@ -13,7 +13,7 @@ FOLDER = "./export"  # Folder in which we will generate the exported data
 
 
 def main():
-    f"""Export the 'todos' from the database to {FOLDER}/{TABLE_NAME}.json"""
+    f"""Export all todos from the database to {FOLDER}/{TABLE_NAME}.json"""
 
     # Get a connection to the database
     engine = get_connection()
@@ -32,7 +32,7 @@ def main():
 
     print(
         colored(
-            "\nYours tasks have been exported to "
+            "\nYour todos have been exported to "
             + colored(JSON_FILE_PATH, attrs=["bold", "underline"])
             + " successfully ",
             "magenta",

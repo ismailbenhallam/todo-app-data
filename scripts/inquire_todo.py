@@ -14,14 +14,14 @@ def __validate_title(answers, title):
 
 
 def get_todo_answers():
-    print(colored("\n>>> Please enter the task details\n", "cyan"))
+    print(colored("\n>>> Please enter todo details\n", "cyan"))
     questions = [
-        Text("title", message="Please enter todo title", validate=__validate_title),
-        Text("description", message="Please enter todo description"),
+        Text("title", message=colored("Title", "green"), validate=__validate_title),
+        Text("description", message=colored("Description", "green")),
         List(
             "priority",
-            message="Please enter priority",
-            choices=[["NORMAL", 1], ["HIGH", 0], ["LOW", 2]],
+            message=colored("Priority", "green"),
+            choices=[["Normal", 1], ["High", 0], ["Low", 2]],
             default=1,
         ),
     ]
