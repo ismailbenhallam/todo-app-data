@@ -8,6 +8,7 @@ from sqlalchemy import create_engine
 from termcolor import colored
 
 from inquire_todo import get_todo_answers
+from spinner import get_spinner
 
 DB_STRING = "postgresql://tarik:pass@localhost/todo-db"
 TABLE_NAME = "todos"
@@ -16,14 +17,19 @@ FOLDER = "./export"  # Folder in which we will generate the exported data
 
 def main():
 
+    # Get todo details from console
     todo = get_todo_answers()
     if not todo:
         exit(0)
 
+    # Show a spinner while trying to save todo in the database
+    spinner = get_spinner()
+    spinner.start()
+
     # Create the connection to the database
     connection = create_engine(DB_STRING)
 
-    # Prepare the todo to save
+    # Prepare todo to save
     dataframe = pd.DataFrame(
         {
             "title": [todo["title"]],
@@ -41,6 +47,8 @@ def main():
         if_exists="append",
         index=False,
     )
+
+    spinner.stop()
     print(colored("Todo saved successfully ", color="magenta") + emoji.emojize(":grinning_face_with_big_eyes:") + "\n")
 
     # Close the connection
