@@ -6,7 +6,7 @@ import emoji
 import pandas as pd
 from termcolor import colored
 
-from todo_connection import get_connection
+from helpers.todos_dataframe import get_todos_df
 
 TABLE_NAME = "todos"
 FOLDER = "./export"  # Folder in which we will generate the exported data
@@ -15,11 +15,7 @@ FOLDER = "./export"  # Folder in which we will generate the exported data
 def main():
     f"""Export all todos from the database to {FOLDER}/{TABLE_NAME}.json"""
 
-    # Get a connection to the database
-    engine = get_connection()
-
-    # Load 'todos' to a DataFrame
-    dataframe = pd.read_sql(f"SELECT * FROM {TABLE_NAME}", engine)
+    dataframe = get_todos_df()
 
     # Create the folder for exported data
     if not os.path.exists(FOLDER):
@@ -40,9 +36,6 @@ def main():
         + emoji.emojize(":grinning_face_with_big_eyes:")
         + "\n"
     )
-
-    # Close the connection
-    engine.dispose()
 
 
 if __name__ == "__main__":

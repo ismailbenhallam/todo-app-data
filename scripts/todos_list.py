@@ -4,8 +4,8 @@ import pandas as pd
 from beautifultable import BeautifulTable
 from termcolor import colored
 
-from spinner import get_spinner
-from todo_connection import get_connection
+from helpers.spinner import get_spinner
+from helpers.todos_dataframe import get_todos_df
 
 TABLE_NAME = "todos"
 
@@ -22,11 +22,8 @@ def main():
     spinner = get_spinner()
     spinner.start()
 
-    # Get a connection to the database
-    engine = get_connection()
-
     # Load 'todos' to a DataFrame
-    dataframe = pd.read_sql(f"SELECT * FROM {TABLE_NAME}  ORDER BY created_at ASC", engine)
+    dataframe = get_todos_df()
 
     # Prepare the table
     table = BeautifulTable()
@@ -52,9 +49,6 @@ def main():
     print("\n\n")
     print(table)
     print("\n\n")
-
-    # Close the connection
-    engine.dispose()
 
 
 if __name__ == "__main__":

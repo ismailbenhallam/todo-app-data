@@ -7,8 +7,8 @@ import pandas as pd
 from sqlalchemy import create_engine
 from termcolor import colored
 
-from inquire_todo import get_todo_answers
-from spinner import get_spinner
+from helpers.inquire_todo import get_todo_answers
+from helpers.spinner import get_spinner
 
 DB_STRING = "postgresql://tarik:pass@localhost/todo-db"
 TABLE_NAME = "todos"
