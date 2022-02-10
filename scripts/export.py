@@ -3,7 +3,6 @@
 import os
 
 import emoji
-import pandas as pd
 from termcolor import colored
 
 from helpers.todos_dataframe import get_todos_df
@@ -12,19 +11,19 @@ TABLE_NAME = "todos"
 FOLDER = "./export"  # Folder in which we will generate the exported data
 
 
-def main():
-    f"""Export all todos from the database to {FOLDER}/{TABLE_NAME}.json"""
+def export(folder: str = FOLDER):
+    f"""Export all todos from the database to {folder}/{TABLE_NAME}.json"""
 
     dataframe = get_todos_df()
 
     # Create the folder for exported data
-    if not os.path.exists(FOLDER):
-        os.mkdir(FOLDER)
+    if not os.path.exists(folder):
+        os.mkdir(folder)
 
     # Export the todos to a JSON format
-    dataframe.to_json(f"{FOLDER}/{TABLE_NAME}.json", "records", indent=2, date_format="iso")
+    dataframe.to_json(f"{folder}/{TABLE_NAME}.json", "records", indent=2, date_format="iso")
 
-    JSON_FILE_PATH = os.path.abspath(f"{FOLDER}/{TABLE_NAME}.json")
+    JSON_FILE_PATH = os.path.abspath(f"{folder}/{TABLE_NAME}.json")
 
     print(
         colored(
@@ -39,4 +38,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    export()

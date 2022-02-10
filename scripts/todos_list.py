@@ -1,6 +1,5 @@
 """Script to display the remaining todos"""
 
-import pandas as pd
 from beautifultable import BeautifulTable
 from termcolor import colored
 
@@ -45,10 +44,9 @@ def main():
             ]
         )
 
+    spinner.hide()
     spinner.stop()
-    print("\n\n")
     print(table)
-    print("\n\n")
 
 
 if __name__ == "__main__":
