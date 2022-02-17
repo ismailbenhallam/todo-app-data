@@ -1,7 +1,9 @@
 # todo-app-data
+
 This is my first Python project
 
 ## Scripts
+
 I created a few scripts, just to warm up 😄 :
 
  - **export.py**           => Export all TODOs from the DB to a JSON file 

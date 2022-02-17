@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  todo-db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: tarik
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: todo-db
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - todo-data:/var/lib/postgresql/data
+volumes:
+  todo-data:
