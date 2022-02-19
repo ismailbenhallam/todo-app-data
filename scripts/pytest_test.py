@@ -8,4 +8,4 @@ def divide(a: int, b: int):
 def test_divide():
     assert divide(15, 3) == 5
     with pytest.raises(ZeroDivisionError):
-        divide(7 / 0)
+        divide(7, 0)
