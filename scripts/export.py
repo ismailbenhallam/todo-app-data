@@ -6,14 +6,13 @@ import os
 import emoji
 from termcolor import colored
 
-from helpers.todos_dataframe import get_todos_df
+from constants import EXPORT_FOLDER, TABLE_NAME
+from todos_dataframe import get_todos_df
 
-TABLE_NAME = "todos"
-FOLDER = "./export"  # Folder in which we will generate the exported data
 EXTENSION = ".json"
 
 
-def export(folder: str = FOLDER, filename: str = TABLE_NAME):
+def export(folder: str = EXPORT_FOLDER, filename: str = TABLE_NAME):
     f"""Export all todos from the database to {folder}/{TABLE_NAME}{EXTENSION}"""
 
     json_file_path = os.path.abspath(f"{folder}/{filename}{EXTENSION}")
@@ -49,7 +48,7 @@ if __name__ == "__main__":
         "--directory",
         help="Directory in which you wich to save the exported data",
         required=False,
-        default=FOLDER,
+        default=EXPORT_FOLDER,
     )
     parser.add_argument(
         "-f",

@@ -3,15 +3,10 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-TABLE_NAME = "todos"
-DB_NAME = "todo-db"
-DB_STRING = f"postgresql://tarik:pass@localhost/{DB_NAME}"
+from constants import DB_STRING, TABLE_NAME
 
 
 def get_todos_df(clauses=""):
-    f"""Get all todos from the database"""
-
-    # Get a connection to the database
     engine = create_engine(DB_STRING)
 
     # Load 'todos' to a DataFrame

@@ -3,15 +3,15 @@
 from beautifultable import BeautifulTable
 from termcolor import colored
 
-from helpers.spinner import get_spinner
-from helpers.todos_dataframe import get_todos_df
+from spinner import get_spinner
+from todos_dataframe import get_todos_df
 
 TABLE_NAME = "todos"
 
 PRIORITY_PROPS_SWITCHER = {
-    0: {"color": "red", "label": "High"},
-    1: {"color": "yellow", "label": "Normal"},
-    2: {"color": "white", "label": "Low"},
+    0: {"color": "red", "label": "High", "state": "Doing"},
+    1: {"color": "yellow", "label": "Normal", "state": "Done"},
+    2: {"color": "white", "label": "Low", "state": "Canceled"},
 }
 
 
@@ -27,7 +27,7 @@ def main():
     # Prepare the table
     table = BeautifulTable()
     table.columns.header = list(
-        map(lambda h: colored(h, "cyan"), ["ID", "Title", "Description", "Priority", "Creation date"])
+        map(lambda h: colored(h, "cyan"), ["Title", "Description", "Priority", "State", "Creation date"])
     )
 
     # Insert todos into the table and show it
@@ -36,11 +36,11 @@ def main():
 
         table.rows.append(
             [
-                todo["id"],
                 todo["title"],
                 todo["description"],
                 colored(PRIORITY_PROPS_SWITCHER[priority]["label"], PRIORITY_PROPS_SWITCHER[priority]["color"]),
-                str(todo["created_at"]),
+                PRIORITY_PROPS_SWITCHER[todo["state"]]["state"],
+                todo["created_at"].strftime("%d %b %Y %H:%M:%S"),
             ]
         )
 

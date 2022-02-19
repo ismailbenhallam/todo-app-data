@@ -1,18 +1,16 @@
 """Script to create a new todo and save it to the database"""
 
+import uuid
 from datetime import datetime
 
 import emoji
 import pandas as pd
 from sqlalchemy import create_engine
-from termcolor import colored
 
-from helpers.inquire_todo import get_todo_answers
-from helpers.spinner import get_spinner
-
-DB_STRING = "postgresql://tarik:pass@localhost/todo-db"
-TABLE_NAME = "todos"
-FOLDER = "./export"  # Folder in which we will generate the exported data
+from constants import DB_STRING, TABLE_NAME
+from inquire_todo import get_todo_answers
+from logger import get_logger
+from spinner import get_spinner
 
 
 def main():
@@ -32,6 +30,7 @@ def main():
     # Prepare todo to save
     dataframe = pd.DataFrame(
         {
+            "id": [uuid.uuid4()],
             "title": [todo["title"]],
             "description": [todo["description"]],
             "priority": [todo["priority"]],
@@ -49,7 +48,9 @@ def main():
     )
 
     spinner.stop()
-    print(colored("Todo saved successfully ", color="magenta") + emoji.emojize(":grinning_face_with_big_eyes:") + "\n")
+
+    log = get_logger(__name__)
+    log.info("Todo saved successfully " + emoji.emojize(":grinning_face_with_big_eyes:"))
 
     # Close the connection
     connection.dispose()

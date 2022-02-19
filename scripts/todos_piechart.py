@@ -1,7 +1,7 @@
 """Script to display a pie chart that shows todos status"""
 import matplotlib.pyplot as plt
 
-from helpers.todos_dataframe import get_todos_df
+from todos_dataframe import get_todos_df
 
 
 def main():

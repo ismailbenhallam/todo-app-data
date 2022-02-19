@@ -1,7 +1,8 @@
 from pyfiglet import Figlet
 from termcolor import colored
 
-APP_NAME = "Todo App"
+from constants import APP_NAME
+
 FONT = "standard"
 
 

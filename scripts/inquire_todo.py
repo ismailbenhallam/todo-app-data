@@ -4,6 +4,8 @@ from inquirer import List, Text, errors, prompt
 from inquirer.themes import GreenPassion
 from termcolor import colored
 
+from logo import get_logo
+
 TITLE_MIN_CHARS = 3
 
 
@@ -14,6 +16,8 @@ def __validate_title(answers, title):
 
 
 def get_todo_answers():
+    print(get_logo())
+
     print(colored("\n>>> Please enter todo details\n", "cyan"))
     questions = [
         Text("title", message=colored("Title", "green"), validate=__validate_title),
