@@ -7,6 +7,8 @@ import emoji
 from termcolor import colored
 
 from constants import EXPORT_FOLDER, TABLE_NAME
+from logo import get_logo
+from spinner import get_spinner
 from todos_dataframe import get_todos_df
 
 EXTENSION = ".json"
@@ -14,6 +16,9 @@ EXTENSION = ".json"
 
 def export(folder: str = EXPORT_FOLDER, filename: str = TABLE_NAME):
     f"""Export all todos from the database to {folder}/{TABLE_NAME}{EXTENSION}"""
+
+    spinner = get_spinner()
+    spinner.start()
 
     json_file_path = os.path.abspath(f"{folder}/{filename}{EXTENSION}")
 
@@ -26,6 +31,8 @@ def export(folder: str = EXPORT_FOLDER, filename: str = TABLE_NAME):
 
     # Export the todos to a JSON format
     dataframe.to_json(json_file_path, "records", indent=2, date_format="iso")
+
+    spinner.stop()
 
     print(
         colored(
@@ -42,6 +49,7 @@ def export(folder: str = EXPORT_FOLDER, filename: str = TABLE_NAME):
 
 
 if __name__ == "__main__":
+    print(get_logo())
     parser = argparse.ArgumentParser(description="Script to export all todos from the database to JSON")
     parser.add_argument(
         "-d",

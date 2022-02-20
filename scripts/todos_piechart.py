@@ -1,10 +1,12 @@
 """Script to display a pie chart that shows todos status"""
 import matplotlib.pyplot as plt
 
+from logo import get_logo
 from todos_dataframe import get_todos_df
 
 
 def main():
+    print(get_logo())
     labels = "Done", "Remaining"
 
     dataframe = get_todos_df()
